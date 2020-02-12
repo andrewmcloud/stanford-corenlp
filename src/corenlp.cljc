@@ -108,11 +108,15 @@
    1 Arity: Build NER tagging pipeline; use custom model"
   ([]
    (let [ner-props (Properties.)]
+     (.put ner-props "pos.maxlen" "100")
+     (.put ner-props "ner.maxlen" "100")
      (.put ner-props "annotators" "tokenize, ssplit, pos, lemma, ner")
      (StanfordCoreNLP. ner-props true)))
 
   ([model-path]
    (let [ner-props (Properties.)]
+     (.put ner-props "pos.maxlen" "100")
+     (.put ner-props "ner.maxlen" "100")
      (.put ner-props "annotators" "tokenize, ssplit, pos, lemma, ner")
      (.put ner-props "ner.model" model-path)
      (StanfordCoreNLP. ner-props true))))
